@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="pt-BR" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nova senha | PUC Minas</title>
+    <link rel="stylesheet" th:href="@{/css/auth.css}">
+</head>
+<body>
+<main class="auth-card">
+    <section class="brand-panel">
+        <img th:src="@{/img/puc-minas.jpg}" alt="PUC Minas">
+    </section>
+    <section class="form-panel">
+        <div class="form-content">
+            <h1>Crie uma nova senha</h1>
+            <p class="subtitle">Escolha uma nova senha para acessar sua conta.</p>
+            <form th:action="@{/reset-senha}" method="post">
+                <input type="hidden" name="email" th:value="${email}">
+                <div class="field">
+                    <label for="novaSenha">Nova senha</label>
+                    <input id="novaSenha" type="password" name="novaSenha" placeholder="Digite a nova senha" required autofocus>
+                </div>
+                <button class="primary-button" type="submit">Alterar senha</button>
+            </form>
+        </div>
+    </section>
+</main>
+</body>
+</html>

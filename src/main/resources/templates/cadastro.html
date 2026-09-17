@@ -1,22 +1,41 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html lang="pt-BR" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Cadastro</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro | PUC Minas</title>
+    <link rel="stylesheet" th:href="@{/css/auth.css}">
 </head>
 <body>
-    <h2>Cadastro de Usuário</h2>
-    <p style="color: red;" th:if="${erro}" th:text="${erro}"></p>
-    
-    <form action="/cadastrar" method="post" th:object="${usuario}">
-        <label>Nome:</label>
-        <input type="text" th:field="*{nome}" required/><br/><br/>
-        <label>Email:</label>
-        <input type="email" th:field="*{email}" required/><br/><br/>
-        <label>Senha:</label>
-        <input type="password" th:field="*{senha}" required/><br/><br/>
-        <button type="submit">Cadastrar</button>
-    </form>
-    <br/>
-    <a href="/login">Voltar ao Login</a>
+<main class="auth-card">
+    <section class="brand-panel">
+        <img th:src="@{/img/puc-minas.jpg}" alt="PUC Minas">
+    </section>
+    <section class="form-panel">
+        <div class="form-content">
+            <h1>Crie sua conta</h1>
+            <p class="subtitle">Preencha seus dados para realizar o cadastro.</p>
+            <p class="message error" th:if="${erro}" th:text="${erro}"></p>
+            <form th:action="@{/cadastrar}" method="post" th:object="${usuario}">
+                <div class="field">
+                    <label for="nome">Nome completo</label>
+                    <input id="nome" type="text" th:field="*{nome}" placeholder="Digite seu nome completo" required autofocus>
+                </div>
+                <div class="field">
+                    <label for="email">E-mail</label>
+                    <input id="email" type="email" th:field="*{email}" placeholder="Digite seu e-mail" required>
+                </div>
+                <div class="field">
+                    <label for="senha">Senha</label>
+                    <input id="senha" type="password" th:field="*{senha}" placeholder="Crie uma senha" required>
+                </div>
+                <button class="primary-button" type="submit">Cadastrar</button>
+            </form>
+            <div class="links">
+                <p>Já possui uma conta? <a th:href="@{/login}">Faça login</a></p>
+            </div>
+        </div>
+    </section>
+</main>
 </body>
 </html>

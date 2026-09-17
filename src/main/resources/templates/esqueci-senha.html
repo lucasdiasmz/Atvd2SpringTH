@@ -1,22 +1,33 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html lang="pt-BR" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Recuperar Senha</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recuperar senha | PUC Minas</title>
+    <link rel="stylesheet" th:href="@{/css/auth.css}">
 </head>
 <body>
-    <h2>Redefinir Senha</h2>
-    <p style="color: red;" th:if="${erro}" th:text="${erro}"></p>
-    
-    <form action="/reset-senha" method="post">
-        <label>Informe seu Email cadastrado:</label>
-        <input type="email" name="email" required/><br/><br/>
-        
-        <label>Nova Senha:</label>
-        <input type="password" name="novaSenha" required/><br/><br/>
-        
-        <button type="submit">Alterar Senha</button>
-    </form>
-    <br/>
-    <a href="/login">Voltar ao Login</a>
+<main class="auth-card">
+    <section class="brand-panel">
+        <img th:src="@{/img/puc-minas.jpg}" alt="PUC Minas">
+    </section>
+    <section class="form-panel">
+        <div class="form-content">
+            <h1>Recuperar senha</h1>
+            <p class="subtitle">Digite seu e-mail para receber o código de verificação.</p>
+            <p class="message error" th:if="${erro}" th:text="${erro}"></p>
+            <form th:action="@{/enviar-codigo}" method="post">
+                <div class="field">
+                    <label for="email">E-mail cadastrado</label>
+                    <input id="email" type="email" name="email" placeholder="Digite seu e-mail" required autofocus>
+                </div>
+                <button class="primary-button" type="submit">Enviar código</button>
+            </form>
+            <div class="links">
+                <a th:href="@{/login}">Voltar para o login</a>
+            </div>
+        </div>
+    </section>
+</main>
 </body>
 </html>
